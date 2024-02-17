@@ -1,5 +1,5 @@
 # Use the official Maven image to build the application
-FROM maven:latest AS build
+FROM maven:3.8.4 AS build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY src ./src
 RUN mvn clean package
 
 # Use the official Tomcat base image for deployment
-FROM tomcat:latest
+FROM tomcat:8
 
 # Remove the default Tomcat webapps directory
 RUN rm -rf /usr/local/tomcat/webapps/*
